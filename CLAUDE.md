@@ -15,6 +15,14 @@ A complete website redesign for **Vivian Zapanta Pilates Studio** (vivianzapanta
 
 ---
 
+## Git Workflow — Auto-Commit & Push
+
+Rojan wants every change made in this project committed and pushed to GitHub (`origin/main`) automatically — do not stop to ask for confirmation before pushing in this repo. After making edits, `git add` the relevant files, commit with a clear message, and `git push origin main` without waiting for separate approval. This standing authorization is scoped to this repo only.
+
+Local git identity for commits in this repo is set to `Rojan <rojandelacruz2017@gmail.com>` (repo-local config, not global).
+
+---
+
 ## Tech Stack
 
 - **Plain HTML5 + CSS3 + Vanilla JavaScript** — no build step, no npm, no framework
