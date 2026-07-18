@@ -1,0 +1,57 @@
+VIVIAN ZAPANTA WEBSITE — PICTURE GUIDE
+=========================================
+Ilagay ang mga picture mo sa: assets/img/
+Pangalanan ng eksaktong ganito: picture1.jpg, picture2.jpg, picture3.jpg ... hanggang picture34.jpg
+(Pwede ring .png — sabihan mo lang ako kung gusto mong .png imbes na .jpg ang extension)
+
+PICTURE 1  — Homepage / Hero banner (malaking background photo sa tuktok ng Home page)
+PICTURE 2  — Homepage / "Become a Certified Instructor" section photo
+PICTURE 3  — Homepage / "What's New / Schedule" section photo
+PICTURE 4  — Homepage / "Welcome to Our Studio" section photo
+PICTURE 5  — Homepage / "Contact Us" section photo
+
+PICTURE 6  — About Vivian page / Hero banner
+PICTURE 7  — About Vivian page / Vivian teaching photo (portrait/tall photo)
+
+PICTURE 8  — About Pilates page / Hero banner
+PICTURE 9  — About Pilates page / Pilates history photo (portrait/tall photo)
+PICTURE 10 — About Pilates page / STOTT PILATES equipment photo
+
+PICTURE 11 — About Our Studio page / Hero banner
+PICTURE 12 — About Our Studio page / Studio equipment photo (portrait/tall photo)
+PICTURE 13 — About Our Studio page / "Inside The Studio" mini-gallery photo 1
+PICTURE 14 — About Our Studio page / "Inside The Studio" mini-gallery photo 2
+PICTURE 15 — About Our Studio page / "Inside The Studio" mini-gallery photo 3
+PICTURE 16 — About Our Studio page / "Inside The Studio" mini-gallery photo 4
+
+PICTURE 17 — Gallery page / Hero banner
+PICTURE 18 — Gallery page / Gallery grid photo 1
+PICTURE 19 — Gallery page / Gallery grid photo 2
+PICTURE 20 — Gallery page / Gallery grid photo 3
+PICTURE 21 — Gallery page / Gallery grid photo 4
+PICTURE 22 — Gallery page / Gallery grid photo 5
+PICTURE 23 — Gallery page / Gallery grid photo 6
+PICTURE 24 — Gallery page / Gallery grid photo 7
+PICTURE 25 — Gallery page / Gallery grid photo 8
+PICTURE 26 — Gallery page / Gallery grid photo 9
+
+PICTURE 27 — Instructor Courses page / Hero banner
+
+PICTURE 28 — By Appointment (Class Descriptions) page / Hero banner
+PICTURE 29 — By Appointment page / Fascianator Roller class photo (portrait/tall photo)
+
+PICTURE 30 — Free Pilates Video Classes page / Hero banner
+
+PICTURE 31 — Schedule page / Hero banner
+
+PICTURE 32 — Blog / Latest News page / Hero banner
+
+PICTURE 33 — Testimonials page / Hero banner
+
+PICTURE 34 — Contact Us page / Hero banner
+
+NOTES:
+- Hero banners (1, 6, 8, 11, 17, 27, 28, 30, 31, 32, 33, 34) look best as WIDE landscape photos (e.g. 1600x700 or wider).
+- Photos marked "portrait/tall" (7, 9, 12, 29) look best as taller/vertical photos.
+- Lahat ng iba (gallery grid, studio mini-gallery, section photos) — square-ish or landscape, kasi naka auto-crop/cover na ang design kaya hindi masisira ang layout kahit di eksaktong sukat.
+- Kung walang available na photo para sa isang numero, okay lang iwan ang placeholder file na wala — sabihin mo lang at panatilihin ko muna ang stock photo doon.
