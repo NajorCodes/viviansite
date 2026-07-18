@@ -1,5 +1,4 @@
 import http.server
-import socketserver
 
 PORT = 8000
 
@@ -10,6 +9,6 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Expires", "0")
         super().end_headers()
 
-with socketserver.TCPServer(("", PORT), NoCacheHandler) as httpd:
+with http.server.ThreadingHTTPServer(("", PORT), NoCacheHandler) as httpd:
     print(f"Serving at http://localhost:{PORT} (no-cache mode)")
     httpd.serve_forever()
