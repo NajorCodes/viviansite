@@ -134,12 +134,11 @@ document.querySelectorAll(".faq-item").forEach((item) => {
   });
 });
 
-// ---------- Forms: mailing list signup + no-backend confirmation ----------
-// The mailing-form posts to a Google Apps Script tied to the "Newsletter
-// Signups" tab of the content sheet, so real emails land in a spreadsheet
-// Vivian can see. Other data-no-backend forms (e.g. the contact page
-// inquiry form) just show a confirmation message, same as before.
-const NEWSLETTER_ENDPOINT = "https://script.google.com/macros/s/AKfycbwsTa0Avi2LPkmUvAlAlA2ZZCOjP7NNuIcfnpdJcMydQtHheNatTKh5KovBqjPcH1Eq/exec";
+// ---------- Forms: mailing list + contact inquiry, no-backend confirmation ----------
+// Both the mailing-form (footer) and the contact page inquiry form post to
+// the same Google Apps Script, which routes by "formType" into separate
+// tabs of the content sheet (and emails Vivian for contact inquiries).
+const FORMS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwsTa0Avi2LPkmUvAlAlA2ZZCOjP7NNuIcfnpdJcMydQtHheNatTKh5KovBqjPcH1Eq/exec";
 
 document.querySelectorAll("form[data-no-backend]").forEach((form) => {
   form.addEventListener("submit", (e) => {
@@ -149,14 +148,22 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
     const note = form.querySelector(".form-note") || form.parentElement.querySelector(".form-note");
     const isMailingForm = form.classList.contains("mailing-form");
 
-    if (isMailingForm && NEWSLETTER_ENDPOINT && !NEWSLETTER_ENDPOINT.startsWith("PASTE_")) {
-      const emailInput = form.querySelector('input[type="email"]');
-      if (emailInput && emailInput.value) {
-        fetch(NEWSLETTER_ENDPOINT, {
-          method: "POST",
-          mode: "no-cors",
-          body: new URLSearchParams({ email: emailInput.value }),
-        }).catch(() => {});
+    if (FORMS_ENDPOINT && !FORMS_ENDPOINT.startsWith("PASTE_")) {
+      const body = new URLSearchParams();
+      if (isMailingForm) {
+        const emailInput = form.querySelector('input[type="email"]');
+        if (emailInput && emailInput.value) {
+          body.set("formType", "newsletter");
+          body.set("email", emailInput.value);
+        }
+      } else {
+        body.set("formType", "contact");
+        body.set("name", form.querySelector("#name")?.value || "");
+        body.set("email", form.querySelector("#email")?.value || "");
+        body.set("message", form.querySelector("#message")?.value || "");
+      }
+      if (body.has("email")) {
+        fetch(FORMS_ENDPOINT, { method: "POST", mode: "no-cors", body }).catch(() => {});
       }
     }
 
