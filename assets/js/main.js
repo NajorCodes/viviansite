@@ -49,6 +49,20 @@ if (menuTrigger && navOverlay) {
       parent.parentElement.classList.toggle("open");
     });
   });
+
+  // Live image preview: swap the preview panel to whichever item is
+  // hovered/focused, matching each link's data-preview photo.
+  const previewImg = document.querySelector("#overlayPreviewImg");
+  if (previewImg) {
+    navOverlay.querySelectorAll("[data-preview]").forEach((item) => {
+      const swap = () => {
+        const url = item.getAttribute("data-preview");
+        previewImg.style.backgroundImage = `url('${url}')`;
+      };
+      item.addEventListener("mouseenter", swap);
+      item.addEventListener("focus", swap);
+    });
+  }
 }
 
 // ---------- Scroll fade-in ----------
