@@ -139,7 +139,7 @@ document.querySelectorAll(".faq-item").forEach((item) => {
 // Signups" tab of the content sheet, so real emails land in a spreadsheet
 // Vivian can see. Other data-no-backend forms (e.g. the contact page
 // inquiry form) just show a confirmation message, same as before.
-const NEWSLETTER_ENDPOINT = "PASTE_NEWSLETTER_ENDPOINT_URL_HERE";
+const NEWSLETTER_ENDPOINT = "https://script.google.com/macros/s/AKfycbwsTa0Avi2LPkmUvAlAlA2ZZCOjP7NNuIcfnpdJcMydQtHheNatTKh5KovBqjPcH1Eq/exec";
 
 document.querySelectorAll("form[data-no-backend]").forEach((form) => {
   form.addEventListener("submit", (e) => {
