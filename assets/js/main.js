@@ -311,19 +311,25 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
     if (!rows) return;
 
     // Sheet columns: Title | Photo URL | Caption
-    // Rows are grouped into an album per unique Title, in the order each
-    // title first appears in the sheet.
+    // Photo URL can hold several links separated by commas (one row =
+    // one album, many photos). Rows are grouped into an album per unique
+    // Title, in the order each title first appears in the sheet.
     const groups = [];
     const indexByTitle = new Map();
     rows.forEach((r) => {
       const title = (r[0] || "").trim() || "Gallery";
-      const photoURL = (r[1] || "").trim();
-      if (!photoURL) return;
+      const urls = (r[1] || "")
+        .split(",")
+        .map((u) => u.trim())
+        .filter(Boolean);
+      if (!urls.length) return;
       if (!indexByTitle.has(title)) {
         indexByTitle.set(title, groups.length);
         groups.push({ title, items: [] });
       }
-      groups[indexByTitle.get(title)].items.push(r);
+      urls.forEach((url) => {
+        groups[indexByTitle.get(title)].items.push({ url, caption: r[2] || title });
+      });
     });
     if (!groups.length) return;
 
@@ -333,9 +339,9 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
         <div class="gallery-group">
           <h3 class="gallery-group-title">${escapeHTML(g.title)}</h3>
           <div class="gallery-grid">${g.items
-            .map((r) => {
-              const src = escapeHTML(driveImageURL(r[1]));
-              const caption = escapeHTML(r[2] || g.title);
+            .map((item) => {
+              const src = escapeHTML(driveImageURL(item.url));
+              const caption = escapeHTML(item.caption);
               return `<div class="gallery-item" data-lightbox><img src="${src}" alt="${caption}" loading="lazy"></div>`;
             })
             .join("")}</div>
