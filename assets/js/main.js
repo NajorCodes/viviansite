@@ -163,7 +163,7 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
       </a>
     </div>
     <button class="fc-toggle" id="fcToggle" aria-label="Open contact options" aria-expanded="false">
-      <svg class="fc-icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.2 0-2.3-.2-3.4-.7L3 21l1.7-4.1A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+      <svg class="fc-icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.44 1.36 4.63 3.5 6.09V21l3.79-2.05c.86.2 1.76.31 2.71.31 5.52 0 10-3.58 10-8s-4.48-8-10-8Z"/><circle cx="8" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="11" r="1" fill="currentColor" stroke="none"/></svg>
       <svg class="fc-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   `;
