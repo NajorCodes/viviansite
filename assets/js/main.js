@@ -38,15 +38,19 @@ if (fadeEls.length) {
 }
 
 // ---------- Gallery lightbox ----------
+// Uses event delegation (not per-item listeners) so gallery items added
+// later, e.g. by the Google Sheets photo loader below, work automatically.
 const lightbox = document.querySelector(".lightbox");
 if (lightbox) {
   const lightboxImg = lightbox.querySelector("img");
-  document.querySelectorAll("[data-lightbox]").forEach((item) => {
-    item.addEventListener("click", () => {
-      const src = item.querySelector("img").src;
-      lightboxImg.src = src;
+  document.addEventListener("click", (e) => {
+    const item = e.target.closest("[data-lightbox]");
+    if (!item) return;
+    const img = item.querySelector("img");
+    if (img) {
+      lightboxImg.src = img.src;
       lightbox.classList.add("open");
-    });
+    }
   });
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox || e.target.classList.contains("lightbox-close")) {
@@ -229,37 +233,64 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
     return div.innerHTML;
   }
 
-  async function loadSheetCards(containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    const url = container.getAttribute("data-sheet-csv");
-    if (!url || url.startsWith("PASTE_")) return;
+  // Converts a Google Drive "share" link into a direct, embeddable image URL,
+  // so Vivian can paste whatever link Drive gives her as-is.
+  function driveImageURL(url) {
+    if (!url) return url;
+    const match = url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)([a-zA-Z0-9_-]+)/);
+    return match ? `https://lh3.googleusercontent.com/d/${match[1]}=w1000` : url;
+  }
 
+  async function fetchSheetRows(url) {
+    if (!url || url.startsWith("PASTE_")) return null;
     try {
       const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) return;
+      if (!res.ok) return null;
       const text = await res.text();
       const rows = parseCSV(text)
         .slice(1)
-        .filter((r) => (r[0] || "").trim() && (r[1] || "").trim());
-      if (!rows.length) return;
+        .filter((r) => (r[0] || "").trim());
+      return rows.length ? rows : null;
+    } catch (e) {
+      return null; // offline or fetch failed: caller keeps its existing fallback
+    }
+  }
 
-      container.innerHTML = `<div class="grid grid-2">${rows
-        .map(
-          (r) => `
+  async function loadSheetCards(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const rows = await fetchSheetRows(container.getAttribute("data-sheet-csv"));
+    if (!rows || !rows.some((r) => (r[1] || "").trim())) return;
+
+    container.innerHTML = `<div class="grid grid-2">${rows
+      .map(
+        (r) => `
         <div class="card">
           <span class="tag-pill">${escapeHTML(r[0])}</span>
           <h3>${escapeHTML(r[1])}</h3>
           <p>${escapeHTML(r[2] || "")}</p>
         </div>`
-        )
-        .join("")}</div>`;
-    } catch (e) {
-      // offline or fetch failed: leave the existing empty-state fallback in place
-    }
+      )
+      .join("")}</div>`;
+  }
+
+  async function loadGalleryPhotos(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const rows = await fetchSheetRows(container.getAttribute("data-sheet-csv"));
+    if (!rows) return;
+
+    container.innerHTML = rows
+      .map((r) => {
+        const src = escapeHTML(driveImageURL(r[0]));
+        const caption = escapeHTML(r[1] || "Workshop");
+        return `<div class="gallery-item" data-lightbox><img src="${src}" alt="${caption}" loading="lazy"></div>`;
+      })
+      .join("");
   }
 
   ["scheduleEvents", "upcomingTrainings", "blogPosts"].forEach(loadSheetCards);
+  loadGalleryPhotos("galleryPhotos");
 })();
 
 // ---------- Mark active nav link ----------
