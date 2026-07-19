@@ -193,6 +193,75 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
   });
 })();
 
+// ---------- Google Sheets content loader ----------
+// Vivian edits a published Google Sheet (Date | Title | Description columns).
+// Each container below reads its sheet's CSV link from its data-sheet-csv
+// attribute, so the URLs live in the page HTML, not here.
+(() => {
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = "", inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQuotes) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { field += '"'; i++; }
+          else inQuotes = false;
+        } else field += c;
+      } else if (c === '"') {
+        inQuotes = true;
+      } else if (c === ",") {
+        row.push(field); field = "";
+      } else if (c === "\n" || c === "\r") {
+        if (c === "\r" && text[i + 1] === "\n") i++;
+        row.push(field); rows.push(row); row = []; field = "";
+      } else {
+        field += c;
+      }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    return rows.filter((r) => r.some((cell) => cell.trim() !== ""));
+  }
+
+  function escapeHTML(str) {
+    const div = document.createElement("div");
+    div.textContent = str == null ? "" : str;
+    return div.innerHTML;
+  }
+
+  async function loadSheetCards(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const url = container.getAttribute("data-sheet-csv");
+    if (!url || url.startsWith("PASTE_")) return;
+
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) return;
+      const text = await res.text();
+      const rows = parseCSV(text)
+        .slice(1)
+        .filter((r) => (r[0] || "").trim() && (r[1] || "").trim());
+      if (!rows.length) return;
+
+      container.innerHTML = `<div class="grid grid-2">${rows
+        .map(
+          (r) => `
+        <div class="card">
+          <span class="tag-pill">${escapeHTML(r[0])}</span>
+          <h3>${escapeHTML(r[1])}</h3>
+          <p>${escapeHTML(r[2] || "")}</p>
+        </div>`
+        )
+        .join("")}</div>`;
+    } catch (e) {
+      // offline or fetch failed: leave the existing empty-state fallback in place
+    }
+  }
+
+  ["scheduleEvents", "upcomingTrainings", "blogPosts"].forEach(loadSheetCards);
+})();
+
 // ---------- Mark active nav link ----------
 const current = location.pathname.split("/").pop() || "index.html";
 document.querySelectorAll(".nav-link, .dropdown a").forEach((a) => {
