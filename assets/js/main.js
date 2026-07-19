@@ -1,3 +1,25 @@
+// ---------- Hero parallax ----------
+const heroBgs = document.querySelectorAll(".hero-bg");
+if (heroBgs.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  let ticking = false;
+  const updateParallax = () => {
+    heroBgs.forEach((bg) => {
+      const rect = bg.parentElement.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      const offset = rect.top * 0.15;
+      bg.style.transform = `translateY(${offset}px)`;
+    });
+    ticking = false;
+  };
+  document.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  });
+  updateParallax();
+}
+
 // ---------- Mobile nav toggle ----------
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
@@ -35,6 +57,33 @@ if (fadeEls.length) {
     { threshold: 0.15 }
   );
   fadeEls.forEach((el) => observer.observe(el));
+}
+
+// ---------- Animated stat counters ----------
+const countEls = document.querySelectorAll("[data-count]");
+if (countEls.length) {
+  const countObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.getAttribute("data-count"), 10);
+        const suffix = el.getAttribute("data-suffix") || "";
+        const duration = 1200;
+        const start = performance.now();
+        const step = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        countObserver.unobserve(el);
+      });
+    },
+    { threshold: 0.4 }
+  );
+  countEls.forEach((el) => countObserver.observe(el));
 }
 
 // ---------- Gallery lightbox ----------
