@@ -310,10 +310,12 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
     const rows = await fetchSheetRows(container.getAttribute("data-sheet-csv"));
     if (!rows) return;
 
-    // Sheet columns: Title | Photo URL | Caption
+    // Sheet columns: Title | Photo URL | Caption | More Photos Link (optional)
     // Photo URL can hold several links separated by commas (one row =
     // one album, many photos). Rows are grouped into an album per unique
-    // Title, in the order each title first appears in the sheet.
+    // Title, in the order each title first appears in the sheet. If any
+    // row for a title has a 4th column, that album gets a "more photos"
+    // link — it's fine to leave this blank.
     const groups = [];
     const indexByTitle = new Map();
     rows.forEach((r) => {
@@ -322,13 +324,16 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
         .split(",")
         .map((u) => u.trim())
         .filter(Boolean);
+      const morePhotosLink = (r[3] || "").trim();
       if (!urls.length) return;
       if (!indexByTitle.has(title)) {
         indexByTitle.set(title, groups.length);
-        groups.push({ title, items: [] });
+        groups.push({ title, items: [], morePhotosLink: "" });
       }
+      const group = groups[indexByTitle.get(title)];
+      if (morePhotosLink && !group.morePhotosLink) group.morePhotosLink = morePhotosLink;
       urls.forEach((url) => {
-        groups[indexByTitle.get(title)].items.push({ url, caption: r[2] || title });
+        group.items.push({ url, caption: r[2] || title });
       });
     });
     if (!groups.length) return;
@@ -345,6 +350,11 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
               return `<div class="gallery-item" data-lightbox><img src="${src}" alt="${caption}" loading="lazy"></div>`;
             })
             .join("")}</div>
+          ${
+            g.morePhotosLink
+              ? `<div class="gallery-more-link"><a href="${escapeHTML(g.morePhotosLink)}" target="_blank" rel="noopener">For more photos, click here</a></div>`
+              : ""
+          }
         </div>`
       )
       .join("");
