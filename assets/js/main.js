@@ -280,12 +280,37 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
     const rows = await fetchSheetRows(container.getAttribute("data-sheet-csv"));
     if (!rows) return;
 
-    container.innerHTML = rows
-      .map((r) => {
-        const src = escapeHTML(driveImageURL(r[0]));
-        const caption = escapeHTML(r[1] || "Workshop");
-        return `<div class="gallery-item" data-lightbox><img src="${src}" alt="${caption}" loading="lazy"></div>`;
-      })
+    // Sheet columns: Title | Photo URL | Caption
+    // Rows are grouped into an album per unique Title, in the order each
+    // title first appears in the sheet.
+    const groups = [];
+    const indexByTitle = new Map();
+    rows.forEach((r) => {
+      const title = (r[0] || "").trim() || "Gallery";
+      const photoURL = (r[1] || "").trim();
+      if (!photoURL) return;
+      if (!indexByTitle.has(title)) {
+        indexByTitle.set(title, groups.length);
+        groups.push({ title, items: [] });
+      }
+      groups[indexByTitle.get(title)].items.push(r);
+    });
+    if (!groups.length) return;
+
+    container.innerHTML = groups
+      .map(
+        (g) => `
+        <div class="gallery-group">
+          <h3 class="gallery-group-title">${escapeHTML(g.title)}</h3>
+          <div class="gallery-grid">${g.items
+            .map((r) => {
+              const src = escapeHTML(driveImageURL(r[1]));
+              const caption = escapeHTML(r[2] || g.title);
+              return `<div class="gallery-item" data-lightbox><img src="${src}" alt="${caption}" loading="lazy"></div>`;
+            })
+            .join("")}</div>
+        </div>`
+      )
       .join("");
   }
 
