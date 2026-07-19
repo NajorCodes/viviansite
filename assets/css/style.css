@@ -578,6 +578,26 @@ a.card { cursor: pointer; }
 .faq-item.open .faq-a { max-height: 400px; }
 .faq-a p { padding-top: 14px; }
 
+.course-list { margin-top: 16px; }
+.course-list .faq-item { padding: 14px 0; font-size: 0.95rem; }
+.course-list .faq-q { font-weight: 500; }
+.course-list .faq-a p { padding-top: 8px; font-size: 0.88rem; }
+
+.prereq-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 700px;
+  margin: 24px auto 0;
+  padding: 18px 22px;
+  background: var(--sage-pale);
+  border-left: 4px solid var(--sage-deep);
+  border-radius: var(--radius-sm);
+  text-align: left;
+}
+.prereq-notice svg { flex-shrink: 0; width: 24px; height: 24px; color: var(--sage-deep); margin-top: 2px; }
+.prereq-notice p { margin: 0; color: var(--charcoal); }
+
 .empty-state {
   text-align: center;
   padding: 70px 30px;
