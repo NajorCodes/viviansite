@@ -358,7 +358,7 @@ a.card { cursor: pointer; }
   border: 1.5px solid #E2D9C9;
   background: var(--white);
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 16px; /* iOS Safari auto-zooms on focus below 16px */
   resize: vertical;
 }
 .form-field input:focus,
@@ -400,12 +400,14 @@ a.card { cursor: pointer; }
 .mailing-form { display: flex; gap: 10px; margin-top: 6px; }
 .mailing-form input {
   flex: 1;
+  min-width: 0;
   padding: 12px 14px;
   border-radius: 100px;
   border: 1px solid rgba(255,255,255,0.25);
   background: rgba(255,255,255,0.06);
   color: var(--white);
   font-family: var(--font-body);
+  font-size: 16px; /* iOS Safari auto-zooms on focus below 16px */
 }
 .mailing-form input::placeholder { color: rgba(255,255,255,0.5); }
 .mailing-form button {
