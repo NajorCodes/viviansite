@@ -225,6 +225,9 @@ section { padding: 96px 0; }
   background-size: cover;
   background-position: center;
 }
+@media (max-width: 700px) {
+  .hero-bg-shift-right { background-position: 75% center; }
+}
 .hero-bg::after {
   content: "";
   position: absolute; inset: 0;
