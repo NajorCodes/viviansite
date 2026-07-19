@@ -14,52 +14,38 @@
 <header class="site-header">
   <div class="nav-wrap">
     <a href="index.html" class="logo">Vivian <span>Zapanta</span></a>
-    <div class="header-actions">
-      <a href="contact.html" class="btn btn-outline header-book">Book Now</a>
-      <button class="menu-trigger" id="menuTrigger" aria-label="Open menu" aria-expanded="false" aria-controls="navOverlay">
-        <span class="menu-trigger-ring"></span>
-        <span class="menu-trigger-label">Menu</span>
-      </button>
-    </div>
-  </div>
-</header>
-
-<div class="nav-overlay" id="navOverlay">
-  <button class="nav-overlay-close" id="navOverlayClose" aria-label="Close menu">&times;</button>
-  <div class="overlay-grid">
-    <nav class="overlay-nav">
-      <ul>
-        <li><a href="index.html" class="nav-link" data-preview="assets/img/picture1.jpg"><span class="nav-num">01</span>Home</a></li>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
         <li class="has-dropdown">
-          <span class="overlay-parent" data-preview="assets/img/picture11.jpg"><span class="nav-num">02</span>Discover<span class="chev">⌄</span></span>
-          <ul class="overlay-sub">
+          <a href="#" class="nav-link">Discover</a>
+          <ul class="dropdown">
             <li><a href="about-vivian.html">About Vivian Zapanta</a></li>
             <li><a href="about-pilates.html">About Pilates</a></li>
             <li><a href="about-studio.html">About Our Studio</a></li>
             <li><a href="gallery.html">Gallery</a></li>
           </ul>
         </li>
-        <li><a href="instructor-courses.html" class="nav-link" data-preview="assets/img/picture27.jpg"><span class="nav-num">03</span>Certify</a></li>
-        <li><a href="schedule.html" class="nav-link" data-preview="assets/img/picture31.jpg"><span class="nav-num">04</span>Gather</a></li>
+        <li><a href="instructor-courses.html" class="nav-link">Certify</a></li>
+        <li><a href="schedule.html" class="nav-link">Gather</a></li>
         <li class="has-dropdown">
-          <span class="overlay-parent" data-preview="assets/img/picture28.jpg"><span class="nav-num">05</span>Practice<span class="chev">⌄</span></span>
-          <ul class="overlay-sub">
+          <a href="#" class="nav-link">Practice</a>
+          <ul class="dropdown">
             <li><a href="class-descriptions.html">By Appointment</a></li>
             <li><a href="free-classes.html">Free Pilates Video Classes</a></li>
           </ul>
         </li>
-        <li><a href="blog.html" class="nav-link" data-preview="assets/img/picture32.jpg"><span class="nav-num">06</span>Journal</a></li>
-        <li><a href="testimonials.html" class="nav-link" data-preview="assets/img/picture33.jpg"><span class="nav-num">07</span>Voices</a></li>
-        <li><a href="contact.html" class="nav-link" data-preview="assets/img/picture34.jpg"><span class="nav-num">08</span>Connect</a></li>
+        <li><a href="blog.html" class="nav-link">Journal</a></li>
+        <li><a href="testimonials.html" class="nav-link">Voices</a></li>
+        <li><a href="contact.html" class="nav-link">Connect</a></li>
       </ul>
     </nav>
-    <div class="overlay-preview">
-      <div class="overlay-preview-img" id="overlayPreviewImg" style="background-image:url('assets/img/picture1.jpg');"></div>
-      <div class="overlay-preview-ring"></div>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-outline">Book Now</a>
+      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <a href="contact.html" class="btn btn-gold nav-overlay-cta">Book Now</a>
-</div>
+</header>
 
 <section class="hero page-hero">
   <div class="hero-bg" style="background-image:url('assets/img/picture11.jpg');"></div>

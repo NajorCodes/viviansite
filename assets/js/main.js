@@ -20,49 +20,26 @@ if (heroBgs.length && !window.matchMedia("(prefers-reduced-motion: reduce)").mat
   updateParallax();
 }
 
-// ---------- Full-screen nav overlay ----------
-const menuTrigger = document.querySelector("#menuTrigger");
-const navOverlay = document.querySelector("#navOverlay");
-const navOverlayClose = document.querySelector("#navOverlayClose");
+// ---------- Mobile nav toggle ----------
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.querySelector(".nav-links");
 
-if (menuTrigger && navOverlay) {
-  const openOverlay = () => {
-    navOverlay.classList.add("open");
-    menuTrigger.setAttribute("aria-expanded", "true");
-    document.body.classList.add("nav-open");
-  };
-  const closeOverlay = () => {
-    navOverlay.classList.remove("open");
-    menuTrigger.setAttribute("aria-expanded", "false");
-    document.body.classList.remove("nav-open");
-  };
-
-  menuTrigger.addEventListener("click", openOverlay);
-  navOverlayClose?.addEventListener("click", closeOverlay);
-  navOverlay.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeOverlay));
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && navOverlay.classList.contains("open")) closeOverlay();
+if (navToggle && navLinks) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    navToggle.classList.toggle("open", isOpen);
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+    document.body.classList.toggle("nav-open", isOpen);
   });
 
-  navOverlay.querySelectorAll(".has-dropdown > .overlay-parent").forEach((parent) => {
-    parent.addEventListener("click", () => {
-      parent.parentElement.classList.toggle("open");
+  document.querySelectorAll(".has-dropdown > .nav-link").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      if (window.innerWidth <= 920) {
+        e.preventDefault();
+        link.parentElement.classList.toggle("open");
+      }
     });
   });
-
-  // Live image preview: swap the preview panel to whichever item is
-  // hovered/focused, matching each link's data-preview photo.
-  const previewImg = document.querySelector("#overlayPreviewImg");
-  if (previewImg) {
-    navOverlay.querySelectorAll("[data-preview]").forEach((item) => {
-      const swap = () => {
-        const url = item.getAttribute("data-preview");
-        previewImg.style.backgroundImage = `url('${url}')`;
-      };
-      item.addEventListener("mouseenter", swap);
-      item.addEventListener("focus", swap);
-    });
-  }
 }
 
 // ---------- Scroll fade-in ----------
@@ -460,7 +437,7 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
 
 // ---------- Mark active nav link ----------
 const current = location.pathname.split("/").pop() || "index.html";
-document.querySelectorAll(".nav-link, .overlay-sub a").forEach((a) => {
+document.querySelectorAll(".nav-link, .dropdown a").forEach((a) => {
   const href = a.getAttribute("href");
   if (href === current) a.classList.add("active");
 });
