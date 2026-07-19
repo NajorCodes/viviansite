@@ -14,38 +14,46 @@
 <header class="site-header">
   <div class="nav-wrap">
     <a href="index.html" class="logo">Vivian <span>Zapanta</span></a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li class="has-dropdown">
-          <a href="#" class="nav-link">About</a>
-          <ul class="dropdown">
-            <li><a href="about-vivian.html">About Vivian Zapanta</a></li>
-            <li><a href="about-pilates.html">About Pilates</a></li>
-            <li><a href="about-studio.html">About Our Studio</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-          </ul>
-        </li>
-        <li><a href="instructor-courses.html" class="nav-link">Instructor Courses</a></li>
-        <li><a href="schedule.html" class="nav-link">Workshop</a></li>
-        <li class="has-dropdown">
-          <a href="#" class="nav-link">Online Classes</a>
-          <ul class="dropdown">
-            <li><a href="class-descriptions.html">By Appointment</a></li>
-            <li><a href="free-classes.html">Free Pilates Video Classes</a></li>
-          </ul>
-        </li>
-        <li><a href="blog.html" class="nav-link">Blog</a></li>
-        <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="nav-cta">
-      <a href="contact.html" class="btn btn-outline">Book Now</a>
-      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <div class="header-actions">
+      <a href="contact.html" class="btn btn-outline header-book">Book Now</a>
+      <button class="menu-trigger" id="menuTrigger" aria-label="Open menu" aria-expanded="false" aria-controls="navOverlay">
+        <span class="menu-trigger-ring"></span>
+        <span class="menu-trigger-label">Menu</span>
+      </button>
     </div>
   </div>
 </header>
+
+<div class="nav-overlay" id="navOverlay">
+  <button class="nav-overlay-close" id="navOverlayClose" aria-label="Close menu">&times;</button>
+  <nav class="overlay-nav">
+    <ul>
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li class="has-dropdown">
+        <span class="overlay-parent">Discover<span class="chev">⌄</span></span>
+        <ul class="overlay-sub">
+          <li><a href="about-vivian.html">About Vivian Zapanta</a></li>
+          <li><a href="about-pilates.html">About Pilates</a></li>
+          <li><a href="about-studio.html">About Our Studio</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </li>
+      <li><a href="instructor-courses.html" class="nav-link">Certify</a></li>
+      <li><a href="schedule.html" class="nav-link">Gather</a></li>
+      <li class="has-dropdown">
+        <span class="overlay-parent">Practice<span class="chev">⌄</span></span>
+        <ul class="overlay-sub">
+          <li><a href="class-descriptions.html">By Appointment</a></li>
+          <li><a href="free-classes.html">Free Pilates Video Classes</a></li>
+        </ul>
+      </li>
+      <li><a href="blog.html" class="nav-link">Journal</a></li>
+      <li><a href="testimonials.html" class="nav-link">Voices</a></li>
+      <li><a href="contact.html" class="nav-link">Connect</a></li>
+    </ul>
+  </nav>
+  <a href="contact.html" class="btn btn-gold nav-overlay-cta">Book Now</a>
+</div>
 
 <section class="hero page-hero">
   <div class="hero-bg" style="background-image:url('assets/img/picture6.jpg');"></div>

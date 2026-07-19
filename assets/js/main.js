@@ -20,24 +20,33 @@ if (heroBgs.length && !window.matchMedia("(prefers-reduced-motion: reduce)").mat
   updateParallax();
 }
 
-// ---------- Mobile nav toggle ----------
-const navToggle = document.querySelector(".nav-toggle");
-const navLinks = document.querySelector(".nav-links");
+// ---------- Full-screen nav overlay ----------
+const menuTrigger = document.querySelector("#menuTrigger");
+const navOverlay = document.querySelector("#navOverlay");
+const navOverlayClose = document.querySelector("#navOverlayClose");
 
-if (navToggle && navLinks) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    navToggle.classList.toggle("open", isOpen);
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-    document.body.classList.toggle("nav-open", isOpen);
+if (menuTrigger && navOverlay) {
+  const openOverlay = () => {
+    navOverlay.classList.add("open");
+    menuTrigger.setAttribute("aria-expanded", "true");
+    document.body.classList.add("nav-open");
+  };
+  const closeOverlay = () => {
+    navOverlay.classList.remove("open");
+    menuTrigger.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("nav-open");
+  };
+
+  menuTrigger.addEventListener("click", openOverlay);
+  navOverlayClose?.addEventListener("click", closeOverlay);
+  navOverlay.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeOverlay));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navOverlay.classList.contains("open")) closeOverlay();
   });
 
-  document.querySelectorAll(".has-dropdown > .nav-link").forEach((link) => {
-    link.addEventListener("click", (e) => {
-      if (window.innerWidth <= 920) {
-        e.preventDefault();
-        link.parentElement.classList.toggle("open");
-      }
+  navOverlay.querySelectorAll(".has-dropdown > .overlay-parent").forEach((parent) => {
+    parent.addEventListener("click", () => {
+      parent.parentElement.classList.toggle("open");
     });
   });
 }
@@ -437,7 +446,7 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
 
 // ---------- Mark active nav link ----------
 const current = location.pathname.split("/").pop() || "index.html";
-document.querySelectorAll(".nav-link, .dropdown a").forEach((a) => {
+document.querySelectorAll(".nav-link, .overlay-sub a").forEach((a) => {
   const href = a.getAttribute("href");
   if (href === current) a.classList.add("active");
 });
