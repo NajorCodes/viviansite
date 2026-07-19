@@ -134,13 +134,36 @@ document.querySelectorAll(".faq-item").forEach((item) => {
   });
 });
 
-// ---------- Forms: no backend, gentle confirmation ----------
+// ---------- Forms: mailing list signup + no-backend confirmation ----------
+// The mailing-form posts to a Google Apps Script tied to the "Newsletter
+// Signups" tab of the content sheet, so real emails land in a spreadsheet
+// Vivian can see. Other data-no-backend forms (e.g. the contact page
+// inquiry form) just show a confirmation message, same as before.
+const NEWSLETTER_ENDPOINT = "PASTE_NEWSLETTER_ENDPOINT_URL_HERE";
+
 document.querySelectorAll("form[data-no-backend]").forEach((form) => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const note = form.querySelector(".form-note");
+    // .form-note lives inside the form on the contact page, but as a
+    // sibling after the mailing-form footer widget.
+    const note = form.querySelector(".form-note") || form.parentElement.querySelector(".form-note");
+    const isMailingForm = form.classList.contains("mailing-form");
+
+    if (isMailingForm && NEWSLETTER_ENDPOINT && !NEWSLETTER_ENDPOINT.startsWith("PASTE_")) {
+      const emailInput = form.querySelector('input[type="email"]');
+      if (emailInput && emailInput.value) {
+        fetch(NEWSLETTER_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          body: new URLSearchParams({ email: emailInput.value }),
+        }).catch(() => {});
+      }
+    }
+
     if (note) {
-      note.textContent = "Thank you! Your message has been noted. We'll get back to you soon.";
+      note.textContent = isMailingForm
+        ? "Thanks for subscribing! You're on the list."
+        : "Thank you! Your message has been noted. We'll get back to you soon.";
     }
     form.reset();
   });
