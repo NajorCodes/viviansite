@@ -318,6 +318,9 @@ a.card { cursor: pointer; }
 .img-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
 .img-frame:hover img { transform: scale(1.05); }
 
+.map-frame { width: 100%; line-height: 0; }
+.map-frame iframe { display: block; width: 100%; }
+
 /* ---------- Testimonial ---------- */
 .testimonial-card {
   background: var(--white);
