@@ -728,6 +728,7 @@ a.card { cursor: pointer; }
   .floating-contact { right: 16px; bottom: 16px; }
   .fc-toggle { width: 52px; height: 52px; }
   .fc-icon { width: 44px; height: 44px; }
+  .site-footer { padding-bottom: 100px; }
 }
 
 .star-rating {
