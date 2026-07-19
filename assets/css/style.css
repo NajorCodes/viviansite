@@ -860,7 +860,7 @@ a.card { cursor: pointer; }
   white-space: nowrap;
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
-.floating-contact.open .fc-label { opacity: 0; transform: scale(0.9); pointer-events: none; }
+.floating-contact.open .fc-label { display: none; }
 
 @media (max-width: 600px) {
   .floating-contact { right: 16px; bottom: 16px; }
