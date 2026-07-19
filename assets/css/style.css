@@ -183,7 +183,10 @@ section { padding: 96px 0; }
   cursor: pointer;
   padding: 6px;
 }
-.nav-toggle span { width: 26px; height: 2px; background: var(--charcoal); border-radius: 2px; }
+.nav-toggle span { width: 26px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 @media (max-width: 920px) {
   .nav-links {
@@ -729,6 +732,7 @@ a.card { cursor: pointer; }
   .fc-toggle { width: 52px; height: 52px; }
   .fc-icon { width: 44px; height: 44px; }
   .site-footer { padding-bottom: 100px; }
+  body.nav-open .floating-contact { display: none; }
 }
 
 .star-rating {

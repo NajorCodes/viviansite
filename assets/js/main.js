@@ -4,7 +4,10 @@ const navLinks = document.querySelector(".nav-links");
 
 if (navToggle && navLinks) {
   navToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("open");
+    const isOpen = navLinks.classList.toggle("open");
+    navToggle.classList.toggle("open", isOpen);
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+    document.body.classList.toggle("nav-open", isOpen);
   });
 
   document.querySelectorAll(".has-dropdown > .nav-link").forEach((link) => {
