@@ -344,8 +344,27 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
       .join("");
   }
 
+  async function loadTestimonials(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const rows = await fetchSheetRows(container.getAttribute("data-sheet-csv"));
+    if (!rows || !rows.some((r) => (r[1] || "").trim())) return;
+
+    container.innerHTML = `<div class="grid grid-4">${rows
+      .map(
+        (r) => `
+        <div class="testimonial-card">
+          <span class="quote-mark">&quot;</span>
+          <p>${escapeHTML(r[0])}</p>
+          <div class="name">${escapeHTML(r[1])}</div>
+        </div>`
+      )
+      .join("")}</div>`;
+  }
+
   ["scheduleEvents", "upcomingTrainings", "blogPosts"].forEach(loadSheetCards);
   loadGalleryPhotos("galleryPhotos");
+  loadTestimonials("studentTestimonials");
 })();
 
 // ---------- Mark active nav link ----------
