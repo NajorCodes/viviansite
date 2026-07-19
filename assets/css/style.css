@@ -282,6 +282,23 @@ a.card { cursor: pointer; }
   margin-bottom: 18px;
 }
 
+.credential-card {
+  position: relative;
+  overflow: hidden;
+}
+.credential-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--blush));
+}
+.credential-icon {
+  background: var(--cream-deep);
+  color: var(--gold);
+}
+.credential-icon svg { width: 26px; height: 26px; }
+
 .section-head { max-width: 640px; margin-bottom: 56px; }
 .section-head.center { margin-inline: auto; text-align: center; }
 
