@@ -416,6 +416,8 @@ a.card { cursor: pointer; }
   color: var(--white);
   font-weight: 600;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .mailing-form button:hover { background: var(--blush-deep); }
 
