@@ -472,6 +472,36 @@ a.card { cursor: pointer; }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
 .gallery-item:hover img { transform: scale(1.08); }
 
+.ig-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  max-width: 900px;
+  margin: 36px auto 0;
+}
+@media (max-width: 700px) { .ig-strip { grid-template-columns: repeat(3, 1fr); } }
+.ig-item {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+.ig-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.ig-item::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(46,43,40,0);
+  transition: background 0.3s ease;
+}
+.ig-item:hover img { transform: scale(1.08); }
+.ig-item:hover::after { background: rgba(46,43,40,0.3); }
+
+.fb-embed-wrap { display: flex; justify-content: center; margin-top: 30px; }
+.fb-embed-wrap .fb-page,
+.fb-embed-wrap iframe { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-soft); }
+
 .gallery-group { margin-bottom: 50px; }
 .gallery-group:last-child { margin-bottom: 0; }
 .gallery-group-title {
