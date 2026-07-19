@@ -498,17 +498,36 @@ a.card { cursor: pointer; }
 .ig-item:hover img { transform: scale(1.08); }
 .ig-item:hover::after { background: rgba(46,43,40,0.3); }
 
-.fb-embed-wrap {
+.fb-card {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  gap: 18px;
   margin-top: 30px;
-  padding: 22px;
+  padding: 26px 28px;
   background: var(--white);
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
+  text-align: left;
 }
-.fb-embed-wrap .fb-page,
-.fb-embed-wrap iframe { border-radius: var(--radius-sm); overflow: hidden; }
+.fb-card-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #0084FF;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fb-card-icon svg { width: 22px; height: 22px; }
+.fb-card-info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.fb-card-info strong { font-size: 1rem; color: var(--charcoal); }
+.fb-card-info span { font-size: 0.88rem; color: var(--charcoal-soft); }
+.fb-card .btn { flex-shrink: 0; }
+@media (max-width: 600px) {
+  .fb-card { flex-direction: column; text-align: center; }
+}
 
 .gallery-group { margin-bottom: 50px; }
 .gallery-group:last-child { margin-bottom: 0; }
