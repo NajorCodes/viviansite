@@ -498,9 +498,17 @@ a.card { cursor: pointer; }
 .ig-item:hover img { transform: scale(1.08); }
 .ig-item:hover::after { background: rgba(46,43,40,0.3); }
 
-.fb-embed-wrap { display: flex; justify-content: center; margin-top: 30px; }
+.fb-embed-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 22px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
 .fb-embed-wrap .fb-page,
-.fb-embed-wrap iframe { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-soft); }
+.fb-embed-wrap iframe { border-radius: var(--radius-sm); overflow: hidden; }
 
 .gallery-group { margin-bottom: 50px; }
 .gallery-group:last-child { margin-bottom: 0; }
