@@ -281,6 +281,7 @@ a.card { cursor: pointer; }
   color: var(--sage-deep);
   margin-bottom: 18px;
 }
+.icon-badge svg { width: 26px; height: 26px; }
 
 .credential-card {
   position: relative;
