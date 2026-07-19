@@ -342,6 +342,7 @@ a.card { cursor: pointer; }
 .testimonial-card .role { font-size: 0.85rem; color: var(--charcoal-soft); }
 
 /* ---------- Forms ---------- */
+.form-note { margin-top: 16px; }
 .form-field { margin-bottom: 20px; }
 .form-field label {
   display: block;
