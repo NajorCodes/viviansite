@@ -426,6 +426,7 @@ a.card { cursor: pointer; }
 .divider-gold { width: 64px; height: 3px; background: var(--gold); border-radius: 4px; margin: 0 0 24px; }
 .tag-pill {
   display: inline-block;
+  margin-bottom: 14px;
   padding: 6px 16px;
   border-radius: 100px;
   background: var(--sage-pale);
