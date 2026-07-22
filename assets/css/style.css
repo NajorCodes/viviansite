@@ -452,8 +452,15 @@ section { padding: 96px 0; }
 .breadcrumb a { color: var(--sage-deep); }
 .breadcrumb a:hover { color: var(--charcoal); }
 
+.page-hero-split { padding: 40px 0 56px; }
+.page-hero-split .hero-split-inner { grid-template-columns: 0.5fr 1.5fr; gap: 44px; }
+.page-hero-split .hero-split-media { max-width: 340px; aspect-ratio: 4/3; }
 .page-hero-split .hero-split-content h1 { margin-bottom: 0.3em; }
 .page-hero-split .hero-split-content p:not(.breadcrumb) { font-size: 1.05rem; max-width: 480px; }
+@media (max-width: 860px) {
+  .page-hero-split .hero-split-inner { grid-template-columns: 1fr; }
+  .page-hero-split .hero-split-media { max-width: 280px; }
+}
 
 /* ---------- Floating Contact Widget ---------- */
 .floating-contact {
