@@ -160,7 +160,7 @@ section { padding: 96px 0; }
   flex-shrink: 0;
 }
 .logo span { color: var(--sage-deep); }
-.logo-mark { width: 36px; height: 36px; flex-shrink: 0; }
+.logo-mark { width: 46px; height: 46px; flex-shrink: 0; }
 
 .nav-links {
   display: flex;
