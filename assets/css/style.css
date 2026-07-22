@@ -637,6 +637,7 @@ a.card { cursor: pointer; }
 
 .bg-sage { background: var(--sage-pale); }
 .bg-charcoal { background: var(--charcoal); color: var(--white); }
+.bg-cream-deep { background: var(--cream-deep); }
 .bg-charcoal h2, .bg-charcoal h3 { color: var(--white); }
 .bg-charcoal p { color: rgba(255,255,255,0.78); }
 
