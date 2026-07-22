@@ -3,8 +3,8 @@
    =================================================== */
 
 :root {
-  --cream: #0B0B0A;
-  --cream-deep: #17140F;
+  --cream: #FAF6F0;
+  --cream-deep: #F1E9DC;
   --sage: #D4B378;
   --sage-deep: #C9A66B;
   --sage-pale: rgba(201,166,107,0.16);
@@ -14,8 +14,6 @@
   --charcoal-soft: #564F47;
   --gold: #C9A66B;
   --white: #FFFFFF;
-  --ink: rgba(255,255,255,0.94);
-  --ink-soft: rgba(255,255,255,0.62);
 
   --font-display: "Cormorant Garamond", serif;
   --font-body: "Outfit", sans-serif;
@@ -51,7 +49,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: var(--font-body);
-  color: var(--ink);
+  color: var(--charcoal);
   background: var(--cream);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
@@ -66,28 +64,14 @@ h1, h2, h3, h4 {
   font-weight: 600;
   line-height: 1.15;
   margin: 0 0 0.5em;
-  color: var(--ink);
+  color: var(--charcoal);
 }
 
 h1 { font-size: clamp(2.6rem, 5vw, 4.4rem); }
 h2 { font-size: clamp(2rem, 3.4vw, 3rem); }
 h3 { font-size: clamp(1.4rem, 2vw, 1.9rem); }
 
-p { margin: 0 0 1em; color: var(--ink-soft); }
-
-/* White "surface" components (cards, dropdowns, floating labels) still use
-   near-black ink for their text, regardless of the page-wide dark theme. */
-.card h1, .card h2, .card h3, .card h4,
-.testimonial-card h1, .testimonial-card h2, .testimonial-card h3, .testimonial-card h4,
-.video-card h1, .video-card h2, .video-card h3, .video-card h4,
-.fb-card h1, .fb-card h2, .fb-card h3, .fb-card h4,
-.empty-state h1, .empty-state h2, .empty-state h3, .empty-state h4 {
-  color: var(--charcoal);
-}
-.card p, .testimonial-card p, .video-card p, .fb-card p, .empty-state p {
-  color: var(--charcoal-soft);
-}
-.card .list-check li, .credential-card .list-check li { color: var(--charcoal-soft); }
+p { margin: 0 0 1em; color: var(--charcoal-soft); }
 
 .eyebrow {
   display: inline-block;
@@ -151,9 +135,9 @@ section { padding: 96px 0; }
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: var(--charcoal);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  background: var(--white);
+  border-bottom: 1px solid rgba(46,43,40,0.08);
+  box-shadow: 0 1px 0 rgba(46,43,40,0.02);
 }
 .nav-wrap {
   max-width: 1320px;
@@ -172,7 +156,7 @@ section { padding: 96px 0; }
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: var(--white);
+  color: var(--charcoal);
   flex-shrink: 0;
 }
 .logo span { color: var(--sage-deep); }
@@ -192,7 +176,7 @@ section { padding: 96px 0; }
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.72);
+  color: var(--charcoal-soft);
   padding: 10px 0;
   position: relative;
 }
@@ -206,7 +190,7 @@ section { padding: 96px 0; }
   transition: right var(--transition);
 }
 .nav-links a.nav-link:hover,
-.nav-links a.nav-link.active { color: var(--white); }
+.nav-links a.nav-link.active { color: var(--charcoal); }
 .nav-links a.nav-link:hover::after,
 .nav-links a.nav-link.active::after { right: 0; }
 
@@ -227,10 +211,10 @@ section { padding: 96px 0; }
   left: 50%;
   transform: translate(-50%, 8px);
   min-width: 240px;
-  background: var(--charcoal);
+  background: var(--white);
   border-radius: var(--radius-sm);
-  box-shadow: 0 24px 60px -20px rgba(0,0,0,0.55);
-  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 24px 60px -20px rgba(46,43,40,0.28);
+  border: 1px solid rgba(46,43,40,0.06);
   padding: 10px;
   opacity: 0;
   visibility: hidden;
@@ -248,9 +232,9 @@ section { padding: 96px 0; }
   font-weight: 500;
   letter-spacing: normal;
   text-transform: none;
-  color: rgba(255,255,255,0.75);
+  color: var(--charcoal-soft);
 }
-.dropdown a:hover { background: var(--sage-pale); color: var(--gold); }
+.dropdown a:hover { background: var(--sage-pale); color: var(--sage-deep); }
 
 .nav-cta { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
 .nav-cta .btn {
@@ -268,7 +252,7 @@ section { padding: 96px 0; }
   cursor: pointer;
   padding: 6px;
 }
-.nav-toggle span { width: 26px; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+.nav-toggle span { width: 26px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
 .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -285,7 +269,7 @@ section { padding: 96px 0; }
     left: 0;
     right: 0;
     height: calc(100vh - 69px);
-    background: var(--charcoal);
+    background: var(--white);
     flex-direction: column;
     align-items: flex-start;
     padding: 30px 28px;
@@ -295,7 +279,7 @@ section { padding: 96px 0; }
     transition: transform var(--transition);
   }
   .nav-links.open { transform: translateX(0); }
-  .nav-links > li { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .nav-links > li { width: 100%; border-bottom: 1px solid rgba(46,43,40,0.06); }
   .nav-links a.nav-link { width: 100%; padding: 16px 0; font-size: 0.85rem; }
   .nav-links a.nav-link::after { display: none; }
   .dropdown {
@@ -368,7 +352,7 @@ section { padding: 96px 0; }
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.5rem;
-  color: var(--ink-soft);
+  color: var(--charcoal-soft);
   margin: 6px 0 0;
 }
 .hero-big-word {
@@ -462,11 +446,11 @@ section { padding: 96px 0; }
   opacity: 0.4;
 }
 .trust-badge-icon svg { width: 30px; height: 30px; }
-.trust-badge span { font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); line-height: 1.45; }
+.trust-badge span { font-size: 0.82rem; font-weight: 600; color: var(--charcoal-soft); line-height: 1.45; }
 
-.breadcrumb { color: var(--ink-soft); font-size: 0.9rem; display: block; margin-bottom: 14px; }
+.breadcrumb { color: var(--charcoal-soft); font-size: 0.9rem; display: block; margin-bottom: 14px; }
 .breadcrumb a { color: var(--sage-deep); }
-.breadcrumb a:hover { color: var(--white); }
+.breadcrumb a:hover { color: var(--charcoal); }
 
 .page-hero-split { padding: 48px 0 56px; }
 .page-hero-split .hero-split-inner { grid-template-columns: 1fr; gap: 0; }
@@ -651,7 +635,7 @@ a.card { cursor: pointer; }
 .section-head { max-width: 640px; margin-bottom: 56px; }
 .section-head.center { margin-inline: auto; text-align: center; }
 
-.bg-sage { background: var(--cream-deep); }
+.bg-sage { background: var(--sage-pale); }
 .bg-charcoal { background: var(--charcoal); color: var(--white); }
 .bg-cream-deep { background: var(--cream-deep); }
 .bg-charcoal h2, .bg-charcoal h3 { color: var(--white); }
@@ -709,7 +693,7 @@ a.card { cursor: pointer; }
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 8px;
-  color: var(--ink);
+  color: var(--charcoal);
 }
 .form-field input,
 .form-field textarea {
@@ -810,7 +794,7 @@ a.card { cursor: pointer; }
   font-weight: 600;
   letter-spacing: 0.03em;
 }
-.list-check li { position: relative; padding-left: 34px; margin-bottom: 14px; color: var(--ink-soft); }
+.list-check li { position: relative; padding-left: 34px; margin-bottom: 14px; color: var(--charcoal-soft); }
 .list-check li::before {
   content: "";
   position: absolute; left: 0; top: 0.05em;
@@ -824,7 +808,7 @@ a.card { cursor: pointer; }
 }
 .stat-row { display: flex; gap: 50px; flex-wrap: wrap; margin-top: 30px; }
 .stat-row .num { font-family: var(--font-display); font-size: 2.6rem; color: var(--sage-deep); display: block; }
-.stat-row .label { font-size: 0.85rem; color: var(--ink-soft); }
+.stat-row .label { font-size: 0.85rem; color: var(--charcoal-soft); }
 
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 @media (max-width: 760px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -958,7 +942,7 @@ a.card { cursor: pointer; }
   color: var(--sage-deep);
   margin-bottom: 8px;
 }
-.prereq-notice p { margin: 0; color: var(--ink-soft); }
+.prereq-notice p { margin: 0; color: var(--charcoal-soft); }
 .prereq-notice strong { color: var(--sage-deep); font-weight: 600; }
 
 .empty-state {
