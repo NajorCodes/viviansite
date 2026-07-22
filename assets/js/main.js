@@ -232,6 +232,9 @@ document.querySelectorAll("form[data-no-backend]").forEach((form) => {
   wrap.id = "floatingContact";
   wrap.innerHTML = `
     <div class="fc-icons">
+      <a class="fc-icon fc-book" href="javascript:void(window.open('https://najor-test-59961c.portal.whautomate.com', '_blank', 'scrollbars=yes, toolbar=no, width=700, height=500'))" aria-label="Book a class">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+      </a>
       <a class="fc-icon fc-email" href="mailto:studio.vivianzapanta@gmail.com" aria-label="Email us">
         <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
       </a>

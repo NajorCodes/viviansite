@@ -1078,7 +1078,9 @@ a.card { cursor: pointer; }
 .floating-contact.open .fc-icon:nth-child(3) { transition-delay: 0.15s; }
 .floating-contact.open .fc-icon:nth-child(4) { transition-delay: 0.2s; }
 .floating-contact.open .fc-icon:nth-child(5) { transition-delay: 0.25s; }
+.floating-contact.open .fc-icon:nth-child(6) { transition-delay: 0.3s; }
 
+.fc-book { background: var(--gold); }
 .fc-email { background: var(--charcoal-soft); }
 .fc-messenger { background: #0084FF; }
 .fc-viber { background: #7360F2; }
