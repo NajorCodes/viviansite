@@ -157,5 +157,26 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+
+<form id="vz-support" class="wa-widget" action="639178440945" data-chat="vz-support"></form>
+<script src="https://widget.whautomate.com/js/whatsapp-widget.min.js"></script>
+<script>
+  (function () {
+    var head = document.getElementsByTagName("HEAD")[0];
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = "https://widget.whautomate.com/css/whatsapp-widget.min.css";
+    head.appendChild(link);
+    var vzSupport = new WhatsAppWidget(document.getElementById("vz-support"), {
+      name: "Vivian Zapanta Pilates Studio",
+      division: "Usually replies within a few hours",
+      photo: "assets/img/logo-vz.svg",
+      introduction: "Hi! Welcome to Vivian Zapanta Pilates Studio. How can we help you today?",
+      defaultMessage: "Hi! I would like to ask about your Pilates classes.",
+      buttonText: "Chat with us"
+    });
+  })();
+</script>
 </body>
 </html>
